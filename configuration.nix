@@ -13,6 +13,9 @@
     git
     wget
 
+    # toolchain stuff, slowly migrating over
+    nodejs
+
     ripgrep
     vivid
     gh
