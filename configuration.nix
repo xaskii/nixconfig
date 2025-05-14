@@ -33,6 +33,7 @@
     fastfetch
     zoxide
     imagemagick
+    exiftool
     bat
 
     # tuis
