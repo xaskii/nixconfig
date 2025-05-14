@@ -62,6 +62,7 @@
             # tuis
             dua
             lazygit
+            delta
             yazi
 
             nil
@@ -102,6 +103,8 @@
     {
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#life
+      # if you break some bullshit
+      # nix run nix-darwin/master#darwin-rebuild -- switch
       darwinConfigurations."life" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
