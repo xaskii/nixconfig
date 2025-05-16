@@ -1,5 +1,5 @@
 {
-  description = "Xavi's nix-darwin system flake";
+  description = "my nix-darwin system flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -22,8 +22,6 @@
       ...
     }@inputs:
     {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#life
       # if you break some bullshit
       # nix run nix-darwin/master#darwin-rebuild -- switch
       darwinConfigurations."life" = nix-darwin.lib.darwinSystem {
