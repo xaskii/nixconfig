@@ -27,6 +27,7 @@
     ruff
     duf
     jq
+    htmlq
     curlie
     xh
     eza
@@ -69,6 +70,8 @@
 
   nix.optimise.automatic = true;
   security.pam.services.sudo_local.touchIdAuth = true;
+  system.primaryUser = "spring";
+  system.defaults.screencapture.type = "jpeg";
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = config.rev or config.dirtyRev or null;
