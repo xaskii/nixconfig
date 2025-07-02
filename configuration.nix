@@ -39,6 +39,7 @@
     imagemagick
     exiftool
     bat
+    nushell
 
     # tuis
     dua
