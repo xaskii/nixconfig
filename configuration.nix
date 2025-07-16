@@ -48,6 +48,7 @@
     tmux
     zellij
 
+    nh # this is really fucking good wth
     nil
     nixfmt-rfc-style
   ];

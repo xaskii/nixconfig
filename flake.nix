@@ -19,7 +19,7 @@
     {
       # if you break some bullshit
       # nix run nix-darwin/master#darwin-rebuild -- switch
-      darwinConfigurations."life" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."four" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
