@@ -39,6 +39,8 @@
     imagemagick
     exiftool
     bat
+    bear
+    cmake
 
     # tuis
     dua
