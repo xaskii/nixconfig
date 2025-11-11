@@ -8,7 +8,6 @@
     neovim
     nvimpager
     htop
-    ffmpeg
     btop
     git
     wget
@@ -41,6 +40,9 @@
     bat
     bear
     cmake
+    watchman
+    doggo
+    mise
 
     # tuis
     dua
@@ -53,15 +55,28 @@
     nh # this is really fucking good wth
     nil
     nixfmt-rfc-style
+
+    # (ffmpeg-full.override { withUnfree = true; })
+    # ((ffmpeg-full.override { withUnfree = true; }).overrideAttrs (_: { doCheck = false; }))
+    ffmpeg-full
+    # ffmpeg
+
+    # first gui app
+    qbittorrent
   ];
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    extra-substituters = [ "https://nix-community.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
   # yeah idk idgaf
   users.users."spring".uid = 501;
   users.users."spring".shell = pkgs.fish;
@@ -72,6 +87,11 @@
   programs.nix-index.enable = true; # fixes the random error with wrong commands
 
   nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
+
   security.pam.services.sudo_local.touchIdAuth = true;
   system.primaryUser = "spring";
   system.defaults.screencapture.type = "jpeg";
