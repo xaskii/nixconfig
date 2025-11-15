@@ -7,21 +7,22 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix.url = "github:DeterminateSystems/nix-src";
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nix-darwin,
       nixpkgs,
+      nix,
       ...
-    }@inputs:
+    }:
     {
-      # if you break some bullshit
-      # nix run nix-darwin/master#darwin-rebuild -- switch
       darwinConfigurations."four" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         modules = [
+          { nixpkgs.overlays = [ nix.overlays.default ]; }
           ./configuration.nix
         ];
       };
