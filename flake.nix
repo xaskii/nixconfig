@@ -23,6 +23,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           { nixpkgs.overlays = [ nix.overlays.default ]; }
+          # ./lix.nix
           ./configuration.nix
         ];
       };

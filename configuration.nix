@@ -11,6 +11,9 @@
     btop
     git
     wget
+    nushell
+    carapace # for nushell, but completions still broken idek
+    fish
 
     # toolchain stuff, slowly migrating over
     nodejs
@@ -40,7 +43,6 @@
     bat
     bear
     cmake
-    watchman
     doggo
     mise
     docker
@@ -58,18 +60,14 @@
     nixfmt-rfc-style
 
     # (ffmpeg-full.override { withUnfree = true; })
-    # ((ffmpeg-full.override { withUnfree = true; }).overrideAttrs (_: { doCheck = false; }))
     ffmpeg-full
-    # ffmpeg
-
-    # first gui app
     qbittorrent
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
-    extra-substituters = [ 
+    extra-substituters = [
       "https://nix-community.cachix.org"
     ];
     extra-trusted-public-keys = [
@@ -103,8 +101,10 @@
 
   programs.zsh.enable = true;
   programs.fish.enable = true;
+  programs.direnv.enable = true;
+  # no command-not-found fish hook exists yet tho?
+  # programs.command-not-found.enable = true;
   programs.nix-index.enable = true; # fixes the random error with wrong commands
-
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
