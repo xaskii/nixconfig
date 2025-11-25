@@ -17,8 +17,8 @@ lib: {
     ];
     shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7ISHEtrXPczITdF5vOOJGSqmsTBG7nkRccQJzgolhG spring@life"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEDheq2VO1MROtfrod8szRaqaTrWX1A5riZOuzgD1zu spring@life.local"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7ISHEtrXPczITdF5vOOJGSqmsTBG7nkRccQJzgolhG spring@four"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEDheq2VO1MROtfrod8szRaqaTrWX1A5riZOuzgD1zu spring@four.local"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINcBV7sB6ZBziiJy1Z3q8zNDOXRIBqjw4aoYln8UN6QY XAVIIIII"
     ];
   };

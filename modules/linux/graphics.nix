@@ -4,16 +4,13 @@
   # Graphics configuration
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-    ];
   };
 
   hardware.nvidia = {
-    modesetting.enable = true;
     open = true;
+    modesetting.enable = true;
+    powerManagement.enable = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
