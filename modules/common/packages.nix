@@ -50,6 +50,8 @@
     fd
     zoxide
 
+    devenv
+
     # file management
     zip
     unzip
@@ -81,7 +83,7 @@
     imagemagick
     exiftool
     bat
-    ffmpeg-full
+    ffmpeg
 
     # system tools
     file
