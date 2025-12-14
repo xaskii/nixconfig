@@ -13,7 +13,9 @@
 
     # version control
     git
+    git-lfs
     jujutsu
+    difftastic
     lazygit
     delta
     gh
@@ -56,6 +58,8 @@
     zip
     unzip
     _7zz
+    rsync
+    rclone
     duf
     eza
     dua
