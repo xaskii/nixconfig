@@ -16,6 +16,7 @@
     git-lfs
     jujutsu
     difftastic
+    mergiraf
     lazygit
     delta
     gh
@@ -26,21 +27,31 @@
     nushell
     starship
     carapace # for nushell
-    inshellisense
+    # inshellisense
+    atuin
 
     # development toolchain
-    nodejs
-    python313
+    # clang-tools
+    # clang
+    # lld
     bun
-    gnumake
-    ruff
+    go
     uv
-    biome
-    mise
+    python313
     bear
+    nodejs
+    biome
     cmake
-    rustup
+    deno
+    gh
+    gnumake
+    mise
+    ninja
     niv
+    ruff
+    rustup
+    zig
+
 
     # search & navigation
     ripgrep
@@ -66,14 +77,16 @@
     yazi
 
     # network tools
-    curlie
-    xh
-    doggo
-    bandwhich
     aria2
-    dig
-    whois
+    bandwhich
+    curl
+    curlie
     curl-impersonate-chrome
+    dig
+    doggo
+    mtr
+    whois
+    xh
 
     # data processing
     jq
@@ -98,6 +111,7 @@
     nh
     nil
     nixfmt-rfc-style
+    statix
 
     # misc
     just
