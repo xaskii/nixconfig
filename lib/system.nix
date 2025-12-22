@@ -16,7 +16,16 @@ inputs: self: super: let
   inputModulesDarwin = collectInputs [ "darwinModules" "default" ];
 
   inputOverlays = collectInputs [ "overlays" "default" ];
-  overlayModule = { nixpkgs.overlays = inputOverlays ++ [ inputs.nix.overlays.default ]; };
+
+  # Fix lowdown patches that fail with current nixpkgs
+  # The nix overlay adds broken patches to lowdown, so we strip all patches
+  lowdownFixOverlay = final: prev: {
+    lowdown = prev.lowdown.overrideAttrs (old: {
+      patches = [];
+    });
+  };
+
+  overlayModule = { nixpkgs.overlays = inputOverlays ++ [ lowdownFixOverlay ]; };
 
   specialArgs = inputs // {
     inherit inputs;
