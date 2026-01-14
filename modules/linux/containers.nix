@@ -3,17 +3,14 @@
 {
   # Only enable on unagi
   config = lib.mkIf (config.networking.hostName == "unagi") {
-    # Podman backend
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
 
-    # Secret for gluetun env vars
     age.secrets.gluetun-env.file = ../../secrets/gluetun.env.age;
 
-    # Containers
     virtualisation.oci-containers = {
       backend = "podman";
       containers = {
@@ -28,6 +25,7 @@
           environment = {
             VPN_SERVICE_PROVIDER = "mullvad";
             VPN_TYPE = "wireguard";
+            DNS_SERVER="off";
           };
         };
         socks5 = {
