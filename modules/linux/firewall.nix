@@ -3,9 +3,10 @@
 {
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
-    interfaces."enp13s0".allowedTCPPorts = [
+    interfaces."enp14s0".allowedTCPPorts = [
       8080
       1080
+      8188
     ];
     interfaces."tailscale0".allowedTCPPorts = [
       8080
@@ -14,10 +15,10 @@
     allowedTCPPorts = [
       80
       443
-      55334
+      58703
     ];
     allowedUDPPorts = [
-      55334
+      58703
     ];
   };
 

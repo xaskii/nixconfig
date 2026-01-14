@@ -6,6 +6,7 @@
     wl-clipboard
     bandwhich
     nvtopPackages.nvidia
+    tcpdump
 
     # terminals
     kitty
@@ -39,5 +40,8 @@
     gcc
     llvmPackages.libcxxClang
     clang-tools
+
+    # system monitoring (nvidia specific)
+    btop-cuda
   ];
 }
