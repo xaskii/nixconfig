@@ -46,6 +46,8 @@ in {
         home-manager.useUserPackages = true;
         home-manager.sharedModules = inputHomeModules;
       }
+
+      inputs.agenix.nixosModules.default
     ] ++ modulesCommon
       ++ modulesLinux
       ++ inputModulesLinux;

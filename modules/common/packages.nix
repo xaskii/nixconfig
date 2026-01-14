@@ -108,6 +108,7 @@
     watchman
 
     # nix tools
+    agenix
     nh
     nil
     nixfmt-rfc-style
