@@ -25,7 +25,7 @@
           environment = {
             VPN_SERVICE_PROVIDER = "mullvad";
             VPN_TYPE = "wireguard";
-            DNS_SERVER="off";
+            DNS_SERVER = "off";
           };
         };
         socks5 = {
@@ -39,5 +39,10 @@
         };
       };
     };
+
+    # Restart containers when secrets change
+    systemd.services.podman-gluetun.restartTriggers = [
+      config.age.secrets.gluetun-env.file
+    ];
   };
 }
