@@ -62,7 +62,7 @@ if test "$remote" = "true"
     echo (set_color blue --bold)"info:"(set_color normal) "building remotely on $host"
 
     # Clean up old config
-    ssh -tt "root@$host" "rm -rf ncc"
+    ssh -tt "root@$host" "rm -rf nixconfig"
 
     # Sync files
     git ls-files | rsync \
@@ -74,10 +74,10 @@ if test "$remote" = "true"
         --human-readable \
         --delay-updates \
         --files-from=- \
-        ./ "root@$host:ncc"
+        ./ "root@$host:nixconfig"
 
     # Run rebuild on remote
-    ssh -tt "root@$host" "cd ncc && ./rebuild.fish $host $extra_args"
+    ssh -tt "root@$host" "cd nixconfig && ./rebuild.fish $host $extra_args"
     exit $status
 end
 
