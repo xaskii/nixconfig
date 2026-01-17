@@ -3,15 +3,6 @@
 lib.mkIf config.isDesktop {
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
-    interfaces."enp14s0".allowedTCPPorts = [
-      8080
-      1080
-      8188
-    ];
-    interfaces."tailscale0".allowedTCPPorts = [
-      8080
-      1080
-    ];
     allowedTCPPorts = [
       80
       443

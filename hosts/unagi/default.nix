@@ -35,6 +35,18 @@ lib: {
     homeDirectory = "/home/spring";
   };
 
+  networking.firewall = {
+    interfaces."enp14s0".allowedTCPPorts = [
+      8080
+      1080
+      8188
+    ];
+    interfaces."tailscale0".allowedTCPPorts = [
+      8080
+      1080
+    ];
+  };
+
   system.stateVersion = "24.11";
   });
 }
