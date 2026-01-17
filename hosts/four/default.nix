@@ -1,5 +1,7 @@
 lib: {
   config = lib.darwinSystem' ({ config, pkgs, ... }: {
+    type = "desktop";
+
     networking.hostName = "four";
 
     system.primaryUser = "spring";

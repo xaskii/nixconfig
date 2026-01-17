@@ -6,6 +6,13 @@ lib: {
       inputs.lanzaboote.nixosModules.lanzaboote
     ];
 
+  type = "desktop";
+
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.lanzaboote.enable = true;
+  boot.lanzaboote.pkiBundle = "/var/lib/sbctl";
+
   networking.hostName = "unagi";
 
   users.users.spring = {

@@ -1,12 +1,12 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = lib.optionals config.isDesktop (with pkgs; [
     # terminal tools
-    wl-clipboard
     bandwhich
     nvtopPackages.nvidia
     tcpdump
+    wl-clipboard
 
     # terminals
     kitty
@@ -43,5 +43,5 @@
 
     # system monitoring (nvidia specific)
     btop-cuda
-  ];
+  ]);
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -29,29 +29,8 @@
     carapace # for nushell
     # inshellisense
     atuin
-
-    # development toolchain
-    # clang-tools
-    # clang
-    # lld
-    bun
-    go
     uv
     python313
-    bear
-    nodejs
-    biome
-    cmake
-    deno
-    gh
-    gnumake
-    mise
-    ninja
-    niv
-    ruff
-    rustup
-    zig
-
 
     # search & navigation
     ripgrep
@@ -62,8 +41,6 @@
     fzf
     fd
     zoxide
-
-    devenv
 
     # file management
     zip
@@ -117,7 +94,28 @@
     # misc
     just
     fastfetch
+  ] ++ lib.optionals config.isDesktop (with pkgs; [
+    # development toolchain
+    # clang-tools
+    # clang
+    # lld
+    bun
+    go
+    bear
+    nodejs
+    biome
+    cmake
+    deno
+    gnumake
+    mise
+    ninja
+    niv
+    ruff
+    rustup
+    zig
+
+    devenv
     docker
     qbittorrent
-  ];
+  ]);
 }

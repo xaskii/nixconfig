@@ -70,6 +70,7 @@ if test "$remote" = "true"
         --compress \
         --delete --recursive --force \
         --delete-excluded \
+        --delete-missing-args \
         --human-readable \
         --delay-updates \
         --files-from=- \

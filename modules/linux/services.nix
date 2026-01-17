@@ -1,16 +1,16 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+  };
+} // lib.mkIf config.isDesktop {
   # Various services
   services.jellyfin = {
     enable = true;
     user = "spring";
     openFirewall = true;
-  };
-
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "both";
   };
 
   services.flatpak.enable = true;

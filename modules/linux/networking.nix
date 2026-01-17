@@ -1,6 +1,6 @@
-{ ... }:
+{ config, lib, ... }:
 
-{
+lib.mkIf config.isDesktop {
   # Enable networking
   networking.networkmanager.enable = true;
 

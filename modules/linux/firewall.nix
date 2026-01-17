@@ -1,6 +1,6 @@
-{ ... }:
+{ config, lib, ... }:
 
-{
+lib.mkIf config.isDesktop {
   networking.firewall = {
     trustedInterfaces = [ "tailscale0" ];
     interfaces."enp14s0".allowedTCPPorts = [

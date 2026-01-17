@@ -1,6 +1,6 @@
-{ ... }:
+{ config, lib, ... }:
 
-{
+lib.mkIf config.isDesktop {
   # Enable X11 and KDE Plasma
   services.xserver.enable = true;
   # services.gnome.gnome-remote-desktop.enable = true;

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
+lib.mkIf config.isDesktop {
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
