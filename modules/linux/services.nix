@@ -5,8 +5,11 @@
     enable = true;
     useRoutingFeatures = "both";
   };
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
 } // lib.mkIf config.isDesktop {
-  # Various services
   services.jellyfin = {
     enable = true;
     user = "spring";
@@ -14,9 +17,6 @@
   };
 
   services.flatpak.enable = true;
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
-
   services.udev.packages = with pkgs; [
     wooting-udev-rules
   ];
