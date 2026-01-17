@@ -1,9 +1,15 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   programs.zoxide.enable = true;
   programs.mosh.enable = true;
   programs.nix-ld.enable = true;
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
+      vimPlugins.nvim-treesitter.withAllGrammars 
+    ];
+  };
 
   programs.command-not-found.enable = false;
   programs.nix-index.enable = true;

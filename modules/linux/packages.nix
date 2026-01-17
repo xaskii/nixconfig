@@ -1,11 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = lib.optionals config.isDesktop (with pkgs; [
-    # terminal tools
+  environment.systemPackages = (with pkgs; [
+    clang
+    clang-tools
     bandwhich
-    nvtopPackages.nvidia
     tcpdump
+  ]) ++ lib.optionals config.isDesktop (with pkgs; [
+    # terminal tools
+    nvtopPackages.nvidia
     wl-clipboard
 
     # terminals
@@ -35,11 +38,6 @@
     rust-jemalloc-sys
     rustPlatform.bindgenHook
     cargo-nextest
-
-    # toolchain (macOS has these built-in)
-    gcc
-    llvmPackages.libcxxClang
-    clang-tools
 
     # system monitoring (nvidia specific)
     btop-cuda
