@@ -6,6 +6,7 @@
     clang-tools
     bandwhich
     tcpdump
+    llvmPackages.libcxxClang
   ]) ++ lib.optionals config.isDesktop (with pkgs; [
     # terminal tools
     nvtopPackages.nvidia
