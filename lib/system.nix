@@ -25,7 +25,14 @@ inputs: self: super: let
     });
   };
 
-  overlayModule = { nixpkgs.overlays = inputOverlays ++ [ lowdownFixOverlay ]; };
+  # Compat shim for Determinate nix-src expecting rust_1_89 on newer nixpkgs.
+  determinateRustCompat = final: prev: {
+    rust_1_89 = prev.rust_1_92 or prev.rust_1_90 or prev.rust;
+  };
+
+  overlayModule = {
+    nixpkgs.overlays = inputOverlays ++ [ determinateRustCompat lowdownFixOverlay ];
+  };
 
   specialArgs = inputs // {
     inherit inputs;
