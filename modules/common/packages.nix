@@ -74,7 +74,6 @@
     # data processing
     jq
     htmlq
-    lowdown
 
     # multiplexers
     tmux
