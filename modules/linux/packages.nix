@@ -22,12 +22,12 @@
     vesktop
     discord
     brave
-    mpv
     vscode-fhs
     code-cursor-fhs
     mullvad-browser
 
     # media
+    mpv
     jellyfin
     qbittorrent
     qbittorrent-nox

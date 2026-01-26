@@ -25,6 +25,9 @@
     wget
     fish
     nushell
+    bash
+    zsh-completions
+    zsh-vi-mode
     starship
     carapace # for nushell
     # inshellisense
@@ -52,6 +55,7 @@
     eza
     dua
     yazi
+    ranger
 
     # network tools
     aria2
@@ -64,10 +68,13 @@
     mtr
     whois
     xh
+    gnupg
+    mkcert
 
     # data processing
     jq
     htmlq
+    lowdown
 
     # multiplexers
     tmux
@@ -80,9 +87,15 @@
     ffmpeg
 
     # system tools
+    coreutils
     file
     lsof
     watchman
+    shellcheck
+    shfmt
+    stylua
+    taplo
+    tex-fmt
 
     # nix tools
     agenix
@@ -94,11 +107,13 @@
     # misc
     just
     fastfetch
+    helix
+    lolcat
+    parallel
   ] ++ lib.optionals config.isDesktop (with pkgs; [
     # development toolchain
-    # clang-tools
-    # clang
-    # lld
+    clang-tools
+    lld
     bun
     go
     bear
@@ -112,10 +127,16 @@
     niv
     ruff
     rustup
+    cargo-audit
+    cargo-binstall
+    cargo-nextest
+    bacon
     zig
 
     devenv
     docker
+    pnpm
     qbittorrent
+    weechat
   ]);
 }

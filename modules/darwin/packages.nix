@@ -3,5 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     iproute2mac
+    colima
+    swiftlint
   ];
 }
