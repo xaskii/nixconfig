@@ -62,7 +62,7 @@
     bandwhich
     curl
     curlie
-    curl-impersonate-chrome
+    curl-impersonate
     dig
     doggo
     mtr
@@ -100,7 +100,7 @@
     agenix
     nh
     nil
-    nixfmt-rfc-style
+    nixfmt
     statix
 
     # misc
