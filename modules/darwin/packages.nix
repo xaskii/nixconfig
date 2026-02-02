@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    iproute2mac
-    colima
-    swiftlint
+  environment.systemPackages = [
+    pkgs.iproute2mac
+    pkgs.colima
+    pkgs.swiftlint
   ];
 }

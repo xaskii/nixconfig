@@ -1,46 +1,46 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = (with pkgs; [
-    clang
-    clang-tools
-    bandwhich
-    tcpdump
-    llvmPackages.libcxxClang
-  ]) ++ lib.optionals config.isDesktop (with pkgs; [
+  environment.systemPackages = [
+    pkgs.clang
+    pkgs.clang-tools
+    pkgs.bandwhich
+    pkgs.tcpdump
+    pkgs.llvmPackages.libcxxClang
+  ] ++ lib.optionals config.isDesktop [
     # terminal tools
-    nvtopPackages.nvidia
-    wl-clipboard
+    pkgs.nvtopPackages.nvidia
+    pkgs.wl-clipboard
 
     # terminals
-    kitty
-    ghostty
-    alacritty
+    pkgs.kitty
+    pkgs.ghostty
+    pkgs.alacritty
 
     # gui apps
-    google-chrome
-    spotify
-    vesktop
-    discord
-    brave
-    vscode-fhs
-    code-cursor-fhs
-    mullvad-browser
+    pkgs.google-chrome
+    pkgs.spotify
+    pkgs.vesktop
+    pkgs.discord
+    pkgs.brave
+    pkgs.vscode-fhs
+    pkgs.code-cursor-fhs
+    pkgs.mullvad-browser
 
     # media
-    mpv
-    jellyfin
-    qbittorrent
-    qbittorrent-nox
-    transmission_4
+    pkgs.mpv
+    pkgs.jellyfin
+    pkgs.qbittorrent
+    pkgs.qbittorrent-nox
+    pkgs.transmission_4
 
     # development
-    sbctl
-    rust-jemalloc-sys
-    rustPlatform.bindgenHook
-    cargo-nextest
+    pkgs.sbctl
+    pkgs.rust-jemalloc-sys
+    pkgs.rustPlatform.bindgenHook
+    pkgs.cargo-nextest
 
     # system monitoring (nvidia specific)
-    btop-cuda
-  ]);
+    pkgs.btop-cuda
+  ];
 }

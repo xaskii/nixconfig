@@ -19,7 +19,7 @@ lib.merge
     };
 
     services.flatpak.enable = true;
-    services.udev.packages = with pkgs; [
-      wooting-udev-rules
+    services.udev.packages = [
+      pkgs.wooting-udev-rules
     ];
   })

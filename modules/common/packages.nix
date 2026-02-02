@@ -1,141 +1,141 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = [
     # editors
-    vim
-    neovim
-    nvimpager
+    pkgs.vim
+    pkgs.neovim
+    pkgs.nvimpager
 
     # system monitoring
-    htop
-    btop
+    pkgs.htop
+    pkgs.btop
 
     # version control
-    git
-    git-lfs
-    jujutsu
-    difftastic
-    mergiraf
-    lazygit
-    delta
-    gh
+    pkgs.git
+    pkgs.git-lfs
+    pkgs.jujutsu
+    pkgs.difftastic
+    pkgs.mergiraf
+    pkgs.lazygit
+    pkgs.delta
+    pkgs.gh
 
     # shell tools
-    wget
-    fish
-    nushell
-    bash
-    zsh-completions
-    zsh-vi-mode
-    starship
-    carapace # for nushell
+    pkgs.wget
+    pkgs.fish
+    pkgs.nushell
+    pkgs.bash
+    pkgs.zsh-completions
+    pkgs.zsh-vi-mode
+    pkgs.starship
+    pkgs.carapace # for nushell
     # inshellisense
-    atuin
-    uv
-    python313
+    pkgs.atuin
+    pkgs.uv
+    pkgs.python313
 
     # search & navigation
-    ripgrep
-    vivid
-    tlrc
-    stow
-    skim
-    fzf
-    fd
-    zoxide
+    pkgs.ripgrep
+    pkgs.vivid
+    pkgs.tlrc
+    pkgs.stow
+    pkgs.skim
+    pkgs.fzf
+    pkgs.fd
+    pkgs.zoxide
 
     # file management
-    zip
-    unzip
-    _7zz
-    rsync
-    rclone
-    duf
-    eza
-    dua
-    yazi
-    ranger
+    pkgs.zip
+    pkgs.unzip
+    pkgs._7zz
+    pkgs.rsync
+    pkgs.rclone
+    pkgs.duf
+    pkgs.eza
+    pkgs.dua
+    pkgs.yazi
+    pkgs.ranger
 
     # network tools
-    aria2
-    bandwhich
-    curl
-    curlie
-    curl-impersonate
-    dig
-    doggo
-    mtr
-    whois
-    xh
-    gnupg
-    mkcert
+    pkgs.aria2
+    pkgs.bandwhich
+    pkgs.curl
+    pkgs.curlie
+    pkgs.curl-impersonate
+    pkgs.dig
+    pkgs.doggo
+    pkgs.mtr
+    pkgs.whois
+    pkgs.xh
+    pkgs.gnupg
+    pkgs.mkcert
 
     # data processing
-    jq
-    htmlq
+    pkgs.jq
+    pkgs.htmlq
 
     # multiplexers
-    tmux
-    zellij
+    pkgs.tmux
+    pkgs.zellij
 
     # media
-    imagemagick
-    exiftool
-    bat
-    ffmpeg
+    pkgs.imagemagick
+    pkgs.exiftool
+    pkgs.bat
+    pkgs.ffmpeg
 
     # system tools
-    coreutils
-    file
-    lsof
-    watchman
-    shellcheck
-    shfmt
-    stylua
-    taplo
-    tex-fmt
+    pkgs.coreutils
+    pkgs.file
+    pkgs.lsof
+    pkgs.watchman
+    pkgs.shellcheck
+    pkgs.shfmt
+    pkgs.stylua
+    pkgs.taplo
+    pkgs.tex-fmt
 
     # nix tools
-    agenix
-    nh
-    nil
-    nixfmt
-    statix
+    pkgs.agenix
+    pkgs.nh
+    pkgs.nil
+    pkgs.nixfmt
+    pkgs.statix
 
     # misc
-    just
-    fastfetch
-    helix
-    lolcat
-    parallel
-  ] ++ lib.optionals config.isDesktop (with pkgs; [
+    pkgs.just
+    pkgs.fastfetch
+    pkgs.helix
+    pkgs.lolcat
+    pkgs.parallel
+  ] ++ lib.optionals config.isDesktop [
     # development toolchain
-    clang-tools
-    lld
-    bun
-    go
-    bear
-    nodejs
-    biome
-    cmake
-    deno
-    gnumake
-    mise
-    ninja
-    niv
-    ruff
-    rustup
-    cargo-audit
-    cargo-binstall
-    cargo-nextest
-    bacon
-    zig
+    pkgs.clang-tools
+    pkgs.lld
+    pkgs.bun
+    pkgs.go
+    pkgs.bear
+    pkgs.nodejs
+    pkgs.biome
+    pkgs.cmake
+    pkgs.deno
+    pkgs.gnumake
+    pkgs.mise
+    pkgs.ninja
+    pkgs.niv
+    pkgs.ruff
+    pkgs.rustup
+    pkgs.cargo-audit
+    pkgs.cargo-binstall
+    pkgs.cargo-nextest
+    pkgs.bacon
+    pkgs.zig
 
-    devenv
-    docker
-    pnpm
-    qbittorrent
-    weechat
-  ]);
+    pkgs.devenv
+    pkgs.docker
+    pkgs.pnpm
+    pkgs.qbittorrent
+    pkgs.weechat
+  ];
 }
