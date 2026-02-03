@@ -10,8 +10,13 @@ lib: {
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = lib.mkForce false;
+  boot.loader.systemd-boot.extraEntries."windows.conf" = ''
+    title Windows
+    efi /EFI/Microsoft/Boot/bootmgfw.efi
+  '';
   boot.lanzaboote.enable = true;
   boot.lanzaboote.pkiBundle = "/var/lib/sbctl";
+
 
   networking.hostName = "unagi";
 

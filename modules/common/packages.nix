@@ -99,7 +99,7 @@
     # nix tools
     pkgs.agenix
     pkgs.nh
-    pkgs.nil
+    # pkgs.nil # takes so fucking long to compile with determinate nix
     pkgs.nixfmt
     pkgs.statix
 
@@ -132,7 +132,7 @@
     pkgs.bacon
     pkgs.zig
 
-    pkgs.devenv
+    # pkgs.devenv
     pkgs.docker
     pkgs.pnpm
     pkgs.qbittorrent
