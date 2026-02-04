@@ -34,6 +34,7 @@
     pkgs.atuin
     pkgs.uv
     pkgs.python313
+    pkgs.uutils-coreutils
 
     # search & navigation
     pkgs.ripgrep
