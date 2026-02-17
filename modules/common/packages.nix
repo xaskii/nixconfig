@@ -41,7 +41,6 @@
     pkgs.vivid
     pkgs.tlrc
     pkgs.stow
-    pkgs.skim
     pkgs.fzf
     pkgs.fd
     pkgs.zoxide
