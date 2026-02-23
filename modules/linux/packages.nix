@@ -29,6 +29,7 @@
 
     # media
     pkgs.mpv
+    pkgs.haruna
     pkgs.jellyfin
     pkgs.qbittorrent
     pkgs.qbittorrent-nox
@@ -40,7 +41,8 @@
     pkgs.rustPlatform.bindgenHook
     pkgs.cargo-nextest
 
-    # system monitoring (nvidia specific)
+    # system stuff
     pkgs.btop-cuda
+    pkgs.efibootmgr
   ];
 }
