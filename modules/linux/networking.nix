@@ -3,6 +3,7 @@
 lib.mkIf config.isDesktop {
   # Enable networking
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # mdns setup
   services.avahi = {
