@@ -102,13 +102,13 @@ else
     echo (set_color yellow --bold)"warn:"(set_color normal) "nh not found, using native rebuild commands"
 
     if test "$os_type" = "Darwin"
-        darwin-rebuild switch --flake ".#$host" $nix_flags $extra_args
+        darwin-rebuild switch --flake ".#$host" $extra_args -- $nix_flags
     else
         # NixOS rebuild
         if test (id -u) -eq 0
-            nixos-rebuild switch --flake ".#$host" $nix_flags $extra_args
+            nixos-rebuild switch --flake ".#$host" $extra_args -- $nix_flags
         else
-            sudo nixos-rebuild switch --flake ".#$host" $nix_flags $extra_args
+            sudo nixos-rebuild switch --flake ".#$host" $extra_args -- $nix_flags
         end
     end
 end
