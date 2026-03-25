@@ -13,7 +13,6 @@
     experimental-features = [
       "nix-command"
       "flakes"
-      "pipe-operators"
     ];
 
     builders-use-substitutes = true;

@@ -99,7 +99,7 @@
     # nix tools
     pkgs.agenix
     pkgs.nh
-    # pkgs.nil # takes so fucking long to compile with determinate nix
+    pkgs.nil
     pkgs.nixfmt
     pkgs.statix
 

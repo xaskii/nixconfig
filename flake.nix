@@ -11,10 +11,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix = {
-      url = "github:DeterminateSystems/nix-src";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,27 +28,25 @@
     lib' = nixpkgs.lib.extend (const (const nix-darwin.lib));
     lib  = lib'.extend (import ./lib inputs);
 
-    hostsByType = readDir ./hosts
-      |> mapAttrs (name: const (import ./hosts/${name} lib))
-      |> attrsToList
-      |> groupBy ({ value, ... }:
-        if value ? class && value.class == "nixos" then
-          "nixosConfigurations"
-        else
-          "darwinConfigurations")
-      |> mapAttrs (const listToAttrs);
+    hostsByType =
+      mapAttrs (const listToAttrs)
+        (groupBy ({ value, ... }:
+          if value ? class && value.class == "nixos" then
+            "nixosConfigurations"
+          else
+            "darwinConfigurations")
+          (attrsToList
+            (mapAttrs (name: const (import ./hosts/${name} lib))
+              (readDir ./hosts))));
 
     # Extract actual configs from the wrapper objects
-    extractConfigs = hosts:
-      hosts
-      |> mapAttrs (name: value: value.config);
+    extractConfigs = mapAttrs (name: value: value.config);
 
     darwinConfigurations = extractConfigs (hostsByType.darwinConfigurations or {});
     nixosConfigurations = extractConfigs (hostsByType.nixosConfigurations or {});
 
     # Also export top-level host configs for convenience
-    hostConfigs = hostsByType.darwinConfigurations or {} // hostsByType.nixosConfigurations or {}
-      |> extractConfigs;
+    hostConfigs = extractConfigs (hostsByType.darwinConfigurations or {} // hostsByType.nixosConfigurations or {});
   in {
     inherit darwinConfigurations nixosConfigurations inputs lib;
   } // hostConfigs;
