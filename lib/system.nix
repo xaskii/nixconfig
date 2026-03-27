@@ -14,9 +14,16 @@ inputs: self: super: let
   inputModulesDarwin = collectInputs [ "darwinModules" "default" ];
 
   inputOverlays = collectInputs [ "overlays" "default" ];
+  lixOverlay = final: prev: {
+    inherit (prev.lixPackageSets.stable)
+      nixpkgs-review
+      nix-eval-jobs
+      nix-fast-build
+      colmena;
+  };
 
   overlayModule = {
-    nixpkgs.overlays = inputOverlays;
+    nixpkgs.overlays = inputOverlays ++ [ lixOverlay ];
   };
 
   specialArgs = inputs // {
