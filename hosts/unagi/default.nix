@@ -41,7 +41,7 @@ lib: {
   };
 
   networking.firewall = {
-    interfaces."enp14s0".allowedTCPPorts = [
+    interfaces."eth0".allowedTCPPorts = [
       8080
       1080
       8188
