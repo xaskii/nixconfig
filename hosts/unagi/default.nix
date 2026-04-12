@@ -3,6 +3,7 @@ lib: {
   config = lib.nixosSystem' ({ config, lib, pkgs, inputs, ... }: {
     imports = [
       ./hardware.nix
+      ./home.nix
       inputs.lanzaboote.nixosModules.lanzaboote
     ];
 
@@ -33,11 +34,6 @@ lib: {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEDheq2VO1MROtfrod8szRaqaTrWX1A5riZOuzgD1zu spring@four"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINcBV7sB6ZBziiJy1Z3q8zNDOXRIBqjw4aoYln8UN6QY XAVIIIII"
     ];
-  };
-
-  home-manager.users.spring.home = {
-    stateVersion  = "24.11";
-    homeDirectory = "/home/spring";
   };
 
   networking.firewall = {
