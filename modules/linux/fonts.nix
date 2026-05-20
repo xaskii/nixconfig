@@ -22,12 +22,12 @@ lib.mkIf config.isDesktop {
         lcdfilter = "default";
       };
       useEmbeddedBitmaps = true; # for emojis on firefox
-      defaultFonts = {
-        sansSerif = [ "Adwaita Sans" "Noto Sans CJK SC" ];
-        serif = [ "Noto Serif" "Noto Serif CJK SC" ];
-        monospace = [ "JetBrains Mono" "Noto Sans Mono CJK SC" ];
-        emoji = [ "Noto Color Emoji" ];
-      };
+      # defaultFonts = {
+      #   sansSerif = [ "Adwaita Sans" "Noto Sans CJK SC" ];
+      #   serif = [ "Noto Serif" "Noto Serif CJK SC" ];
+      #   monospace = [ "JetBrains Mono" "Noto Sans Mono CJK SC" ];
+      #   emoji = [ "Noto Color Emoji" ];
+      # };
     };
   };
 }

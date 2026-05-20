@@ -24,7 +24,6 @@
     pkgs.discord
     pkgs.brave
     pkgs.vscode-fhs
-    pkgs.code-cursor-fhs
     pkgs.mullvad-browser
 
     # media
