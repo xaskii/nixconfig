@@ -11,4 +11,5 @@ let
   systems = [ unagi ];
 in {
   "gluetun.env.age".publicKeys = users ++ systems;
+  "cloudflared-home.json.age".publicKeys = users ++ systems;
 }
