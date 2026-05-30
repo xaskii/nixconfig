@@ -9,7 +9,7 @@ lib.merge
     programs.nix-index.enable = true;
 
     documentation.man = {
-      generateCaches = false; # speeds up rebuilds
+      cache.enable = false; # speeds up rebuilds
     };
   }
   (lib.mkIf config.isDesktop {
