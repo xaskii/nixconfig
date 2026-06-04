@@ -20,12 +20,18 @@
             "--cap-add=NET_ADMIN"
             "--device=/dev/net/tun:/dev/net/tun"
           ];
-          ports = [ "1080:1080" ];
+          ports = [
+            "1080:1080"
+            "8080:8080"
+            "58703:58703/tcp"
+            "58703:58703/udp"
+          ];
           environmentFiles = [ config.age.secrets.gluetun-env.path ];
           environment = {
             VPN_SERVICE_PROVIDER = "mullvad";
             VPN_TYPE = "wireguard";
             DNS_SERVER = "off";
+            FIREWALL_INPUT_PORTS = "1080,8080,58703";
           };
         };
         socks5 = {
