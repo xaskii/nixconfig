@@ -55,7 +55,6 @@
     pkgs.eza
     pkgs.dua
     pkgs.yazi
-    pkgs.ranger
 
     # network tools
     pkgs.aria2
