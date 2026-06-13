@@ -43,9 +43,12 @@ lib: {
       8188
     ];
     interfaces."tailscale0".allowedTCPPorts = [
+      53
+      443
       8080
       1080
     ];
+    interfaces."tailscale0".allowedUDPPorts = [ 53 ];
   };
 
   system.stateVersion = "24.11";
