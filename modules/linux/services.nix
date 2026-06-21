@@ -58,6 +58,7 @@ lib.merge
             hosts {
               100.75.147.105 jellyfin.internal.xaskii.com
               100.75.147.105 qbit.internal.xaskii.com
+              100.75.147.105 soju.internal.xaskii.com
             }
             errors
           }
@@ -68,7 +69,7 @@ lib.merge
         enable = true;
         package = pkgs.caddy.withPlugins {
           plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
-          hash = "sha256-VHm9POg2KixGsMsAcfFFDMK9x6niRJ1iJV9kkSwkSjc=";
+          hash = "sha256-i7OoxiHJ4Stfp7SnxOryLAXS6w5+PJCnEydOakhFYcE=";
         };
         environmentFile = config.age.secrets.cloudflare-caddy-env.path;
 
