@@ -4,7 +4,6 @@ lib: {
     imports = [
       ./hardware.nix
       ./home.nix
-      inputs.lanzaboote.nixosModules.lanzaboote
     ];
 
   type = "desktop";
