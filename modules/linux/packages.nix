@@ -5,8 +5,13 @@
     pkgs.clang
     pkgs.clang-tools
     pkgs.bandwhich
+
     pkgs.man-pages
+    pkgs.bpftools
+    pkgs.bpftrace
     pkgs.tcpdump
+    config.boot.kernelPackages.perf
+
     pkgs.llvmPackages.libcxxClang
   ] ++ lib.optionals config.isDesktop [
     # terminal tools
