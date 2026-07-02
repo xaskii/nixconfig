@@ -29,20 +29,18 @@ lib.merge
       package = pkgs.mullvad-vpn;
     };
   }
-  (
-    lib.mkIf config.isDesktop {
-      services.jellyfin = {
-        enable = true;
-        user = "spring";
-        openFirewall = true;
-      };
+  (lib.mkIf config.isDesktop {
+    services.jellyfin = {
+      enable = true;
+      user = "spring";
+      openFirewall = true;
+    };
 
-      services.flatpak.enable = true;
-      services.udev.packages = [
-        pkgs.wooting-udev-rules
-      ];
-    }
-  )
+    services.flatpak.enable = true;
+    services.udev.packages = [
+      pkgs.wooting-udev-rules
+    ];
+  })
   (
     lib.mkIf (config.networking.hostName == "unagi") {
       age.secrets.cloudflare-caddy-env = {
@@ -57,9 +55,12 @@ lib.merge
             bind 100.75.147.105
             hosts {
               100.75.147.105 jellyfin.internal.xaskii.com
+              100.75.147.105 media.internal.xaskii.com
               100.75.147.105 qbit.internal.xaskii.com
               100.75.147.105 soju.internal.xaskii.com
+              fallthrough
             }
+            forward . 1.1.1.1 1.0.0.1
             errors
           }
         '';
@@ -79,6 +80,29 @@ lib.merge
             dns cloudflare {env.CLOUDFLARE_API_TOKEN}
           }
           reverse_proxy 127.0.0.1:8096
+        '';
+
+        virtualHosts."media.internal.xaskii.com".extraConfig = ''
+          bind 100.75.147.105
+          tls {
+            dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+          }
+
+          handle /sonarr* {
+            reverse_proxy 127.0.0.1:8989
+          }
+
+          handle /radarr* {
+            reverse_proxy 127.0.0.1:7878
+          }
+
+          handle /prowlarr* {
+            reverse_proxy 127.0.0.1:9696
+          }
+
+          handle {
+            reverse_proxy 127.0.0.1:5055
+          }
         '';
 
         virtualHosts."qbit.internal.xaskii.com".extraConfig = ''
