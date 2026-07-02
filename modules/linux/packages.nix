@@ -5,6 +5,7 @@
     pkgs.clang
     pkgs.clang-tools
     pkgs.bandwhich
+    pkgs.man-pages
     pkgs.tcpdump
     pkgs.llvmPackages.libcxxClang
   ] ++ lib.optionals config.isDesktop [

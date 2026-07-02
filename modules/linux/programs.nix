@@ -11,6 +11,7 @@ lib.merge
     documentation.man = {
       cache.enable = false; # speeds up rebuilds
     };
+    documentation.dev.enable = true;
   }
   (lib.mkIf config.isDesktop {
     programs.firefox.enable = true;
