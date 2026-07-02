@@ -35,6 +35,11 @@ lib: {
     ];
   };
 
+  programs.mosh = {
+    enable = true;
+    openFirewall = false;
+  };
+
   networking.firewall = {
     interfaces."eth0".allowedTCPPorts = [
       8080
@@ -48,6 +53,12 @@ lib: {
       1080
     ];
     interfaces."tailscale0".allowedUDPPorts = [ 53 ];
+    interfaces."tailscale0".allowedUDPPortRanges = [
+      {
+        from = 60000;
+        to = 61000;
+      }
+    ];
   };
 
   system.stateVersion = "24.11";
