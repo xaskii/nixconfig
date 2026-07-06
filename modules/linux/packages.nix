@@ -5,6 +5,7 @@
     pkgs.clang
     pkgs.clang-tools
     pkgs.bandwhich
+    pkgs.bubblewrap
 
     pkgs.man-pages
     pkgs.bpftools
