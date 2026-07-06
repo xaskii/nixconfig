@@ -42,7 +42,15 @@ lib.merge
     ];
   })
   (
+    let
+      tailscaleBoundService = {
+        after = [ "tailscaled.service" ];
+        wants = [ "tailscaled.service" ];
+      };
+    in
     lib.mkIf (config.networking.hostName == "unagi") {
+      boot.kernel.sysctl."net.ipv4.ip_nonlocal_bind" = 1;
+
       age.secrets.cloudflare-caddy-env = {
         file = ../../secrets/cloudflare-caddy.env.age;
         mode = "0400";
@@ -117,14 +125,8 @@ lib.merge
       };
 
       systemd.services = {
-        coredns = {
-          after = [ "tailscaled.service" ];
-          wants = [ "tailscaled.service" ];
-        };
-        caddy = {
-          after = [ "tailscaled.service" ];
-          wants = [ "tailscaled.service" ];
-        };
+        coredns = tailscaleBoundService;
+        caddy = tailscaleBoundService;
       };
     }
   )
