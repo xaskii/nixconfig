@@ -118,9 +118,7 @@ lib.merge
           tls {
             dns cloudflare {env.CLOUDFLARE_API_TOKEN}
           }
-          reverse_proxy 127.0.0.1:8080 {
-            header_up Host {upstream_hostport}
-          }
+          reverse_proxy 127.0.0.1:8080
         '';
       };
 
