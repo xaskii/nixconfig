@@ -2,7 +2,7 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  nix.package = pkgs.lixPackageSets.stable.lix;
+  nix.package = pkgs.nixVersions.latest;
 
   nix.settings = {
     extra-substituters = [
