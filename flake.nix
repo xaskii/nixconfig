@@ -28,16 +28,15 @@
     lib' = nixpkgs.lib.extend (const (const nix-darwin.lib));
     lib  = lib'.extend (import ./lib inputs);
 
-    hostsByType =
-      mapAttrs (const listToAttrs)
-        (groupBy ({ value, ... }:
-          if value ? class && value.class == "nixos" then
-            "nixosConfigurations"
-          else
-            "darwinConfigurations")
-          (attrsToList
-            (mapAttrs (name: const (import ./hosts/${name} lib))
-              (readDir ./hosts))));
+    hostsByType = readDir ./hosts
+      |> mapAttrs (name: const (import ./hosts/${name} lib))
+      |> attrsToList
+      |> groupBy ({ value, ... }:
+        if value ? class && value.class == "nixos" then
+          "nixosConfigurations"
+        else
+          "darwinConfigurations")
+      |> mapAttrs (const listToAttrs);
 
     # Extract actual configs from the wrapper objects
     extractConfigs = mapAttrs (name: value: value.config);
@@ -46,7 +45,8 @@
     nixosConfigurations = extractConfigs (hostsByType.nixosConfigurations or {});
 
     # Also export top-level host configs for convenience
-    hostConfigs = extractConfigs (hostsByType.darwinConfigurations or {} // hostsByType.nixosConfigurations or {});
+    hostConfigs = hostsByType.darwinConfigurations or {} // hostsByType.nixosConfigurations or {}
+      |> extractConfigs;
   in {
     inherit darwinConfigurations nixosConfigurations inputs lib;
   } // hostConfigs;

@@ -7,7 +7,9 @@ inputs: self: super: let
 
   collectInputs = let
     inputs' = attrValues inputs;
-  in path: map (getAttrFromPath path) (filter (hasAttrByPath path) inputs');
+  in path: inputs'
+    |> filter (hasAttrByPath path)
+    |> map (getAttrFromPath path);
 
   inputHomeModules   = collectInputs [ "homeModules"   "default" ];
   inputModulesLinux  = collectInputs [ "nixosModules"  "default" ];
