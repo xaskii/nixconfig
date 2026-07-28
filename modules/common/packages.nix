@@ -116,7 +116,6 @@
     pkgs.go
     pkgs.bear
     pkgs.nodejs
-    pkgs.biome
     pkgs.cmake
     pkgs.deno
     pkgs.gnumake
