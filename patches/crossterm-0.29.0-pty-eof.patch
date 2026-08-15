@@ -1,0 +1,80 @@
+diff --git a/src/event/source/unix/tty.rs b/src/event/source/unix/tty.rs
+--- a/src/event/source/unix/tty.rs
++++ b/src/event/source/unix/tty.rs
+@@ -85,12 +85,19 @@
+ ///
+ /// Similar to `std::io::Read::read_to_end`, except this function
+ /// only fills the given buffer and does not read beyond that.
+-fn read_complete(fd: &FileDesc, buf: &mut [u8]) -> io::Result<usize> {
++enum ReadOutcome {
++    Bytes(usize),
++    WouldBlock,
++    Eof,
++}
++
++fn read_complete(fd: &FileDesc, buf: &mut [u8]) -> io::Result<ReadOutcome> {
+     loop {
+         match fd.read(buf) {
+-            Ok(x) => return Ok(x),
++            Ok(0) => return Ok(ReadOutcome::Eof),
++            Ok(x) => return Ok(ReadOutcome::Bytes(x)),
+             Err(e) => match e.kind() {
+-                io::ErrorKind::WouldBlock => return Ok(0),
++                io::ErrorKind::WouldBlock => return Ok(ReadOutcome::WouldBlock),
+                 io::ErrorKind::Interrupted => continue,
+                 _ => return Err(e),
+             },
+@@ -146,21 +153,24 @@
+             };
+             if fds[0].revents & POLLIN != 0 {
+                 loop {
+-                    let read_count = read_complete(&self.tty, &mut self.tty_buffer)?;
+-                    if read_count > 0 {
+-                        self.parser.advance(
+-                            &self.tty_buffer[..read_count],
+-                            read_count == TTY_BUFFER_SIZE,
+-                        );
+-                    }
++                    let read_count = match read_complete(&self.tty, &mut self.tty_buffer)? {
++                        ReadOutcome::Bytes(read_count) => read_count,
++                        ReadOutcome::WouldBlock => break,
++                        ReadOutcome::Eof => {
++                            return Err(io::Error::new(
++                                io::ErrorKind::UnexpectedEof,
++                                "terminal input reached EOF",
++                            ));
++                        }
++                    };
++                    self.parser.advance(
++                        &self.tty_buffer[..read_count],
++                        read_count == TTY_BUFFER_SIZE,
++                    );
+ 
+                     if let Some(event) = self.parser.next() {
+                         return Ok(Some(event));
+                     }
+-
+-                    if read_count == 0 {
+-                        break;
+-                    }
+                 }
+             }
+             if fds[1].revents & POLLIN != 0 {
+@@ -169,7 +179,7 @@
+                 #[cfg(not(feature = "libc"))]
+                 let fd = FileDesc::Borrowed(self.winch_signal_receiver.as_fd());
+                 // drain the pipe
+-                while read_complete(&fd, &mut [0; 1024])? != 0 {}
++                while matches!(read_complete(&fd, &mut [0; 1024])?, ReadOutcome::Bytes(_)) {}
+                 // TODO Should we remove tput?
+                 //
+                 // This can take a really long time, because terminal::size can
+@@ -190,7 +200,7 @@
+                 #[cfg(not(feature = "libc"))]
+                 let fd = FileDesc::Borrowed(self.wake_pipe.receiver.as_fd());
+                 // drain the pipe
+-                while read_complete(&fd, &mut [0; 1024])? != 0 {}
++                while matches!(read_complete(&fd, &mut [0; 1024])?, ReadOutcome::Bytes(_)) {}
+ 
+                 return Err(io::Error::new(
+                     io::ErrorKind::Interrupted,
