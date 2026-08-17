@@ -20,6 +20,12 @@ lib: {
 
   networking.hostName = "unagi";
 
+  environment.sessionVariables.SHELLS =
+    lib.concatMapStringsSep ":" lib.getExe [
+      pkgs.nushell
+      pkgs.bash
+    ];
+
   users.users.spring = {
     isNormalUser = true;
     description = "spring";
@@ -27,7 +33,7 @@ lib: {
       "networkmanager"
       "wheel"
     ];
-    shell = pkgs.fish;
+    shell = inputs.crash.packages.${pkgs.stdenv.hostPlatform.system}.default;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO7ISHEtrXPczITdF5vOOJGSqmsTBG7nkRccQJzgolhG xaskii"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAEDheq2VO1MROtfrod8szRaqaTrWX1A5riZOuzgD1zu spring@four"
