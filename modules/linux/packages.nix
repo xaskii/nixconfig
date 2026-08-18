@@ -4,8 +4,6 @@
   environment.systemPackages = [
     pkgs.bubblewrap
     pkgs.man-pages
-    pkgs.bpftools
-    pkgs.bpftrace
     pkgs.tcpdump
     pkgs.perf
   ] ++ lib.optionals config.isDesktop [
