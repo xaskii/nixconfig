@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ ... }:
 
-lib.mkIf (config.networking.hostName == "unagi") {
+{
   services.soju = {
     enable = true;
     hostName = "soju.internal.xaskii.com";

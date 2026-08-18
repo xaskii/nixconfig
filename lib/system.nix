@@ -2,7 +2,6 @@ inputs: self: super: let
   inherit (self) attrValues filter getAttrFromPath hasAttrByPath collectNix;
 
   modulesCommon = collectNix ../modules/common;
-  modulesLinux  = collectNix ../modules/linux;
   modulesDarwin = collectNix ../modules/darwin;
 
   collectInputs = let
@@ -43,7 +42,6 @@ in {
 
       inputs.agenix.nixosModules.default
     ] ++ modulesCommon
-      ++ modulesLinux
       ++ inputModulesLinux;
   };
 

@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ ... }:
 
-lib.mkIf (config.networking.hostName == "unagi") {
+{
   users.groups.media = { };
 
   users.users.spring.extraGroups = [ "media" ];

@@ -4,6 +4,9 @@ lib: {
     imports = [
       ./hardware.nix
       ./home.nix
+      ../../modules/linux/profiles/base.nix
+      ../../modules/linux/profiles/desktop.nix
+      ../../modules/linux/profiles/unagi.nix
     ];
 
   type = "desktop";

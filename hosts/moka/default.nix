@@ -3,6 +3,7 @@ lib: {
   config = lib.nixosSystem' ({ config, pkgs, ... }: {
     imports = [
       ./hardware.nix
+      ../../modules/linux/profiles/base.nix
     ];
 
     type = "server";

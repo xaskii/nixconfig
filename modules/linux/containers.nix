@@ -1,8 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, ... }:
 
 {
-  # Only enable on unagi
-  config = lib.mkIf (config.networking.hostName == "unagi") {
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;
@@ -50,5 +48,4 @@
     systemd.services.podman-gluetun.restartTriggers = [
       config.age.secrets.gluetun-env.file
     ];
-  };
 }
