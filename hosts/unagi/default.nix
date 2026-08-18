@@ -51,14 +51,11 @@ lib: {
 
   networking.firewall = {
     interfaces."eth0".allowedTCPPorts = [
-      8080
-      1080
       8188
     ];
     interfaces."tailscale0".allowedTCPPorts = [
       53
       443
-      8080
       1080
     ];
     interfaces."tailscale0".allowedUDPPorts = [ 53 ];

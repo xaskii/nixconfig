@@ -2,10 +2,7 @@
 
 lib.mkIf config.isDesktop {
   networking.firewall = {
-    trustedInterfaces = [ "tailscale0" ];
     allowedTCPPorts = [
-      80
-      443
       58703
     ];
     allowedUDPPorts = [

@@ -32,7 +32,7 @@ lib.merge
     services.jellyfin = {
       enable = true;
       user = "spring";
-      openFirewall = true;
+      openFirewall = false;
     };
 
     services.flatpak.enable = true;
