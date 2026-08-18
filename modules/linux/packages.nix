@@ -2,53 +2,51 @@
 
 {
   environment.systemPackages = [
-    pkgs.clang
-    pkgs.clang-tools
-    pkgs.bandwhich
     pkgs.bubblewrap
-
     pkgs.man-pages
     pkgs.bpftools
     pkgs.bpftrace
     pkgs.tcpdump
     pkgs.perf
-
-    pkgs.llvmPackages.libcxxClang
   ] ++ lib.optionals config.isDesktop [
-    # terminal tools
-    pkgs.nvtopPackages.nvidia
-    pkgs.wl-clipboard
-
-    # terminals
-    pkgs.kitty
-    pkgs.ghostty
-    pkgs.alacritty
-
-    # gui apps
-    pkgs.google-chrome
-    pkgs.spotify
-    pkgs.vesktop
-    pkgs.discord
-    pkgs.brave
-    pkgs.vscode-fhs
-    pkgs.mullvad-browser
-
-    # media
-    pkgs.mpv
-    pkgs.haruna
-    pkgs.jellyfin
-    pkgs.qbittorrent
-    pkgs.qbittorrent-nox
-    pkgs.transmission_4
-
-    # development
     pkgs.sbctl
-    pkgs.rust-jemalloc-sys
-    pkgs.rustPlatform.bindgenHook
-    pkgs.cargo-nextest
-
-    # system stuff
-    pkgs.btop-cuda
     pkgs.efibootmgr
+  ];
+
+  home-manager.sharedModules = [
+    {
+      home.packages = lib.optionals config.isDesktop [
+        pkgs.clang
+        pkgs.llvmPackages.libcxxClang
+
+        pkgs.nvtopPackages.nvidia
+        pkgs.wl-clipboard
+
+        # terminals
+        pkgs.kitty
+        pkgs.ghostty
+        pkgs.alacritty
+
+        # gui apps
+        pkgs.google-chrome
+        pkgs.spotify
+        pkgs.vesktop
+        pkgs.discord
+        pkgs.brave
+        pkgs.vscode-fhs
+        pkgs.mullvad-browser
+
+        # media
+        pkgs.mpv
+        pkgs.haruna
+        pkgs.jellyfin
+        pkgs.qbittorrent-nox
+        pkgs.transmission_4
+
+        # development
+        pkgs.rust-jemalloc-sys
+        pkgs.rustPlatform.bindgenHook
+      ];
+    }
   ];
 }

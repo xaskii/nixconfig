@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
-{
-  environment.systemPackages = [
+let
+  userPackages = [
     # editors
     pkgs.vim
     pkgs.neovim
@@ -133,5 +133,22 @@
     pkgs.pnpm
     pkgs.qbittorrent
     pkgs.weechat
+  ];
+in
+{
+  # Keep a small recovery toolset available to root and system services.
+  environment.systemPackages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+    pkgs.vim
+    pkgs.git
+    pkgs.jujutsu
+    pkgs.ripgrep
+    pkgs.curl
+    pkgs.jq
+    pkgs.file
+    pkgs.lsof
+  ] ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin userPackages;
+
+  home-manager.sharedModules = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+    { home.packages = userPackages; }
   ];
 }
