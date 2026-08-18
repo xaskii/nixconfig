@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 
 {
   environment.systemPackages = [
@@ -36,7 +36,7 @@
         # media
         pkgs.mpv
         pkgs.haruna
-        pkgs.jellyfin
+        self.packages.${pkgs.stdenv.hostPlatform.system}.jellyfin
         pkgs.qbittorrent-nox
         pkgs.transmission_4
 

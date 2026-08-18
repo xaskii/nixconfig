@@ -54,6 +54,13 @@
 
     packages = genAttrs [ "aarch64-darwin" "x86_64-linux" ] (system: let
       pkgs = nixpkgs.legacyPackages.${system};
+
+      jellyfin = pkgs.callPackage ./packages/jellyfin/package.nix {
+        inherit jellyfin-web;
+      };
+      jellyfin-web = pkgs.callPackage ./packages/jellyfin-web/package.nix {
+        inherit jellyfin;
+      };
     in {
       default = pkgs.writers.writeNuBin "nh" ''
         def --wrapped main [...arguments] {
@@ -61,6 +68,8 @@
           exec ${pkgs.lib.getExe pkgs.nh} ...$arguments
         }
       '';
+
+      inherit jellyfin jellyfin-web;
     });
   in {
     inherit darwinConfigurations nixosConfigurations inputs lib packages;
