@@ -11,7 +11,7 @@
     pkgs.bpftools
     pkgs.bpftrace
     pkgs.tcpdump
-    config.boot.kernelPackages.perf
+    pkgs.perf
 
     pkgs.llvmPackages.libcxxClang
   ] ++ lib.optionals config.isDesktop [
