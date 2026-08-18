@@ -28,7 +28,6 @@ let
     pkgs.bash
     pkgs.zsh-completions
     pkgs.zsh-vi-mode
-    pkgs.starship
     pkgs.carapace # for nushell
     # inshellisense
     pkgs.atuin
