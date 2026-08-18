@@ -16,7 +16,6 @@
   home-manager.sharedModules = [
     {
       home.packages = lib.optionals config.isDesktop [
-        pkgs.clang
         pkgs.llvmPackages.libcxxClang
 
         pkgs.nvtopPackages.nvidia
