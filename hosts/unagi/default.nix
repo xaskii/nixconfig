@@ -11,6 +11,11 @@ lib: {
 
   type = "desktop";
 
+  services.xserver.displayManager.setupCommands = ''
+    ${pkgs.xset}/bin/xset +dpms
+    ${pkgs.xset}/bin/xset dpms 0 0 60
+  '';
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.systemd-boot.extraEntries."windows.conf" = ''
