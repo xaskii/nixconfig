@@ -21,16 +21,13 @@
           ports = [
             "127.0.0.1:1080:1080"
             "100.75.147.105:1080:1080"
-            "127.0.0.1:8080:8080"
-            "58703:58703/tcp"
-            "58703:58703/udp"
           ];
           environmentFiles = [ config.age.secrets.gluetun-env.path ];
           environment = {
             VPN_SERVICE_PROVIDER = "mullvad";
             VPN_TYPE = "wireguard";
             DNS_SERVER = "off";
-            FIREWALL_INPUT_PORTS = "1080,8080,58703";
+            FIREWALL_INPUT_PORTS = "1080";
           };
         };
         socks5 = {
