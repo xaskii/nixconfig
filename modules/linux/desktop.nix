@@ -20,7 +20,19 @@ lib.mkIf config.isDesktop {
     kdePackages.kio-extras
     kdePackages.kdegraphics-thumbnailers
     kdePackages.ffmpegthumbs
+    kdePackages.kservice
   ];
+  # KService needs a menu to discover applications outside Plasma.
+  environment.etc."xdg/menus/applications.menu".text = ''
+    <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+      "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+    <Menu>
+      <Name>Applications</Name>
+      <DefaultAppDirs/>
+      <DefaultDirectoryDirs/>
+      <Include><All/></Include>
+    </Menu>
+  '';
   fonts.packages = [ pkgs.font-awesome ];
   security.pam.services.swaylock = {};
 
