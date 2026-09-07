@@ -6,6 +6,8 @@
     pkgs.man-pages
     pkgs.tcpdump
     pkgs.perf
+    pkgs.wireguard-tools
+    pkgs.socat
   ] ++ lib.optionals config.isDesktop [
     pkgs.sbctl
     pkgs.efibootmgr

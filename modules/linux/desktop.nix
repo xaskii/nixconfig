@@ -4,8 +4,9 @@ lib.mkIf config.isDesktop {
   # Enable X11 and KDE Plasma
   services.xserver.enable = true;
   # services.gnome.gnome-remote-desktop.enable = true;
-  services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.plasma-login-manager.enable = true;
 
   # Configure keymap
   services.xserver.xkb = {
