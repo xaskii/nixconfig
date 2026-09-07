@@ -27,6 +27,9 @@
         pkgs.alacritty
 
         # gui apps
+        pkgs.kdePackages.dolphin
+        pkgs.kdePackages.gwenview
+        pkgs.kdePackages.breeze-icons
         pkgs.google-chrome
         pkgs.spotify
         pkgs.vesktop
