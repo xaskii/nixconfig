@@ -5,6 +5,7 @@ lib.mkIf config.isDesktop {
     enableDefaultPackages = true;
     packages = [
       pkgs.adwaita-fonts
+      pkgs.font-awesome # Icon glyphs used by Waybar.
       pkgs.noto-fonts
       pkgs.noto-fonts-color-emoji
       pkgs.noto-fonts-cjk-sans
