@@ -2,6 +2,8 @@
 
 lib.mkIf config.isDesktop {
   programs.niri.enable = true;
+  # Let standalone KDE applications find plugins installed in Nix profiles.
+  qt.enable = true;
   services.displayManager.defaultSession = "niri";
   services.greetd = {
     enable = true;
@@ -15,6 +17,9 @@ lib.mkIf config.isDesktop {
     swaylock
     waybar
     xwayland-satellite
+    kdePackages.kio-extras
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.ffmpegthumbs
   ];
   fonts.packages = [ pkgs.font-awesome ];
   security.pam.services.swaylock = {};
