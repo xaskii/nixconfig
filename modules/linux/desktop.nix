@@ -39,6 +39,20 @@ lib.mkIf config.isDesktop {
   home-manager.sharedModules = [ {
     services.mako.enable = true;
     services.polkit-gnome.enable = true;
+    services.swayidle = {
+      enable = true;
+      systemdTargets = [ "graphical-session.target" ];
+      timeouts = [
+        {
+          timeout = 60;
+          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+        }
+      ];
+      events = {
+        after-resume = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+      };
+    };
   } ];
 
   services.xserver.xkb = {
