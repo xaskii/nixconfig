@@ -3,7 +3,11 @@
 lib.mkIf config.isDesktop {
   programs.niri.enable = true;
   # Let standalone KDE applications find plugins installed in Nix profiles.
-  qt.enable = true;
+  qt = {
+    enable = true;
+    platformTheme = "kde";
+    style = "breeze";
+  };
   services.displayManager.defaultSession = "niri";
   services.greetd = {
     enable = true;
@@ -21,6 +25,7 @@ lib.mkIf config.isDesktop {
     kdePackages.kdegraphics-thumbnailers
     kdePackages.ffmpegthumbs
     kdePackages.kservice
+    kdePackages.breeze-gtk
   ];
   # KService needs a menu to discover applications outside Plasma.
   environment.etc."xdg/menus/applications.menu".text = ''
@@ -34,6 +39,7 @@ lib.mkIf config.isDesktop {
     </Menu>
   '';
   fonts.packages = [ pkgs.font-awesome ];
+  fonts.fontconfig.defaultFonts.sansSerif = [ "Noto Sans" "Noto Sans CJK SC" ];
   security.pam.services.swaylock = {};
 
   home-manager.sharedModules = [ {
