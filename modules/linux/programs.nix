@@ -3,7 +3,7 @@
 lib.merge
   {
     programs.zoxide.enable = true;
-    programs.mosh.enable = true;
+    programs.mosh.enable = false;
     programs.nix-ld.enable = true;
     programs.command-not-found.enable = false;
     programs.nix-index.enable = true;

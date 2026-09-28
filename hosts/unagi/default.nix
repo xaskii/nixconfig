@@ -45,7 +45,7 @@ lib: {
   };
 
   programs.mosh = {
-    enable = true;
+    enable = false;
     openFirewall = false;
   };
 
