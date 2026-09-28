@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 
@@ -32,7 +31,6 @@ lib.merge
   (lib.mkIf config.isDesktop {
     services.jellyfin = {
       enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.jellyfin;
       user = "spring";
       openFirewall = false;
     };
