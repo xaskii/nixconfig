@@ -16,7 +16,7 @@ let
     pkgs.git-lfs
     pkgs.jujutsu
     pkgs.difftastic
-    pkgs.mergiraf
+    # pkgs.mergiraf
     pkgs.lazygit
     pkgs.delta
     pkgs.gh
