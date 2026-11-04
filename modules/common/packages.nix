@@ -119,7 +119,6 @@
     pkgs.cmake
     pkgs.deno
     pkgs.gnumake
-    pkgs.mise
     pkgs.ninja
     pkgs.niv
     pkgs.ruff
@@ -127,7 +126,6 @@
     pkgs.cargo-audit
     pkgs.cargo-binstall
     pkgs.cargo-nextest
-    pkgs.bacon
     pkgs.zig
 
     # pkgs.devenv
